@@ -1,0 +1,56 @@
+<% layout('/layouts/boilerplate') -%>
+
+<body>
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+            <h2>edit listing</h2>
+
+    <form action="/listing/<%=list._id%>?_method=PUT" method="post" class="needs-validation"  enctype="multipart/form-data" novalidate>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" value="<%= list.title %>" name="list[title]" id="title" class="form-control" required>
+            <div class="invalid-feedback">title should be valid</div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea   name="list[description]" cols="30" row="20" class="form-control" id="description" required><%= list.description %></textarea>
+            <div class="invalid-feedback">decription should be valid</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" value="<%= list.location %>" class="form-control" id="location" name="list[location]" required>
+            <div class="invalid-feedback">location should be valid</div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" value="<%= list.country %>" id="country" class="form-control" name="list[country]" required>
+                <div class="invalid-feedback">country should be valid</div>
+            </div>
+            <div class="mb-3 col-md-8">
+                <label for="price" class="form-label">Price</label>
+                <input type="text"value="<%= list.price %>" class="form-control" id="price" name="list[price]" required>
+                <div class="invalid-feedback">price should be valid</div>
+            </div>
+        </div>
+        <div class="mb-3">
+          Original image <br>
+          <img src="<%=originalimageurl%>" alt="<%=list.image.filename%>">
+            
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Update the image</label>
+            <input type="file"  id="image" class="form-control" name="list[image]" required>
+            
+        </div>
+        
+        <button class="btn btn-dark mt-3 editbtn">submit</button>
+    </form>
+        </div>
+        
+    </div>
+    
+</body>

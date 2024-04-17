@@ -1,0 +1,159 @@
+<% layout('/layouts/boilerplate') -%>
+<body>
+    
+    <style>
+      #filters{
+        display:flex;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .filter{
+        text-align: center;
+        margin-right:1.6rem;
+        margin-top:2rem;
+        opacity:0.7;
+        transition-duration:0.3s;
+        
+
+      }
+
+      .filter:hover{
+        opacity: 1;
+      }
+      p{
+        font-size: small;
+      }
+
+      .tax-info{
+        display:none;
+      }
+
+      .tax-toggle{
+        border:1px solid black;
+        border-radius: 1rem;
+        height:3.2rem;
+        padding:1rem;
+        
+        margin-left:3rem;
+        display:flex;
+        align-items: center;
+      }
+
+      a{
+        text-decoration: none;
+        color:black;
+      }
+
+
+
+
+      @media(max-width:1400px){
+          .x{
+            display:none;
+          }
+      }
+
+      @media(max-width:1000px){
+        .y{
+          display:none;
+
+        }
+        
+      }
+    </style>
+
+    
+    <div id="filters" >
+      <div class="filter">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+      </div>
+
+      <div class="filter x">
+        <div><a href="/listing?category=Rooms"><i class="fa-solid fa-bed"></i></a></div>
+        <p>Rooms</p>
+      </div>
+
+      <div class="filter y">
+        <div><a href="/listing?category=Mountains"><i class="fa-solid fa-mountain-city"></i></a></div>
+        <p>Mountain city</p>
+      </div>
+
+      <div class="filter y">
+        <div><a href="/listing?category=Castles"><i class="fa-brands fa-fort-awesome"></i></a></div>
+        <p>castles</p>
+      </div>
+
+      <div class="filter x">
+        <div><a href="/listing?category=Mountains"><i class="fa-solid fa-mountain"></i></a></div>
+        <p>mountains</p>
+      </div>
+
+      <div class="filter x">
+        <div><a href="/listing?category=Pools"><i class="fa-solid fa-person-swimming"></i></a></div>
+        <p>Pools</p>
+      </div>
+
+      <div class="filter x">
+        <div><a href="/listing?category=Farms"><i class="fa-solid fa-tractor"></i></a></div>
+        <p>Farms</p>
+      </div>
+
+      <div class="filter y">
+        <div><a href="/listing?category=Arctic"><i class="fa-regular fa-snowflake"></i></a></div>
+        <p>Arctic</p>
+      </div>
+      <div class="filter y">
+        <div><a href="/listing?category=Doms"><i class="fa-solid fa-landmark-dome"></i></a></div>
+        <p>Doms</p>
+      </div>
+
+      <div class="filter x">
+        <div><a href="/listing?catagory=Boats"><i class="fa-solid fa-ship"></i></a></div>
+        <p>Boat</p>
+      </div>
+      <div class="tax-toggle">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Display total after tax</label>
+        </div>
+      </div>
+      
+
+   </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <% for(listing of allistings){%>
+        <a href="/listing/<%=listing._id%>" class="card-link">
+        <div class="card col listing-card">
+            <img src="<%=listing.image.url%>" class="card-img-top" alt="..." height="300">
+            <div class="card-img-overlay">abcd</div>
+            <div class="card-body">
+              <p class="card-text"><b><%=listing.title%></b><br>&#8377;<%= listing.price %>/night  <i class="tax-info">+18% GST</i></p>
+              
+            </div>
+          </div>
+        </a>
+    
+   <%}%>
+    
+
+    </div>
+
+    <script>
+      let taxswitch=document.getElementById("flexSwitchCheckDefault");
+      taxswitch.addEventListener("click",()=>{
+        let taxinfo=document.getElementsByClassName("tax-info");
+        
+        for(tax of taxinfo){
+          if(tax.style.display!="inline")
+          {
+            tax.style.display="inline";
+          }
+          else{
+            tax.style.display="none";
+          }
+        }
+      })
+    </script>  
+ 
+        </body>
