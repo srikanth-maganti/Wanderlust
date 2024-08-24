@@ -109,11 +109,12 @@ app.use((req,res,next)=>{
     next()
 ;})
 
-
 app.use("/listing",listingsRouter);
 
 app.use("/listing/:id/reviews",ReviewsRouter);
 app.use("/",userRouter);
+app.use("/",listingsRouter);
+
 
 
 // app.get("/demo",async(req,res)=>{
